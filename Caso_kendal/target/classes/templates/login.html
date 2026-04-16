@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: plantillaBase('Iniciar Sesión', ~{::section})}">
+    <body>
+
+        <section>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-5">
+                    <div class="card shadow-lg border-0 rounded-lg">
+
+                        <div class="card-header bg-primary text-white text-center py-3">
+                            <h4 class="mb-0"><i class="fa-solid fa-user-lock"></i> Acceso al Sistema</h4>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <div th:if="${param.error}" class="alert alert-danger text-center shadow-sm">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Credenciales incorrectas.
+                            </div>
+                            <div th:if="${param.logout}" class="alert alert-success text-center shadow-sm">
+                                <i class="fa-solid fa-circle-check"></i> Sesión cerrada correctamente.
+                            </div>
+
+                            <form method="post" th:action="@{/login}">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold text-secondary">Correo Electrónico</label>
+                                    <input type="email" name="username" class="form-control form-control-lg" placeholder="ejemplo@email.com" required autofocus>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold text-secondary">Contraseña</label>
+                                    <input type="password" name="password" class="form-control form-control-lg" placeholder="******" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+                                    Entrar <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

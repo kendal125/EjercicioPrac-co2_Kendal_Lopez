@@ -1,0 +1,71 @@
+/* 1. Importar fuente de Google Fonts (Inter) para un look más moderno */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* 2. Aplicar la fuente a todo el cuerpo de la página */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fc; /* Un gris azulado muy suave y elegante */
+}
+
+/* 3. Mejoras en la barra de navegación */
+.navbar {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave para separar del contenido */
+}
+
+/* 4. Estilos para las Tarjetas (Cards) */
+.card {
+    border-radius: 12px; /* Bordes más redondeados */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Efecto de elevación al pasar el mouse sobre las tarjetas de consultas */
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Asegurar que el encabezado de la tarjeta respete el borde redondeado */
+.card-header {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+}
+
+/* 5. Mejoras en las Tablas */
+.table-hover tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f5f9; /* Color sutil al pasar el mouse sobre una fila */
+}
+
+/* 6. Animaciones para Botones */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.03); /* El botón crece ligeramente al hacer hover */
+}
+
+/* 7. Estilizar los campos de formulario */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+/* Efecto al hacer clic en un input */
+.form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* 8. Ajustar las etiquetas (Badges) */
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    padding: 0.5em 0.8em;
+}
+

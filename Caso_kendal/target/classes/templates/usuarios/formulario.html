@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: plantillaBase(${usuario.id == null ? 'Registrar Usuario' : 'Editar Usuario'}, ~{::section})}">
+    <body>
+
+        <section>
+            <div class="row justify-content-center mt-3">
+                <div class="col-lg-7">
+
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+                            <h5 class="mb-0">
+                                <i class="fa-solid fa-user-plus me-2" th:if="${usuario.id == null}"></i>
+                                <i class="fa-solid fa-user-gear me-2" th:unless="${usuario.id == null}"></i>
+                                <span th:text="${usuario.id == null} ? 'Alta de Nuevo Usuario' : 'Actualización de Perfil'"></span>
+                            </h5>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" th:field="*{id}">
+
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold text-secondary">Nombre Completo <span class="text-danger">*</span></label>
+                                        <input type="text" th:field="*{nombre}" class="form-control" placeholder="Ej. Juan Pérez" required>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold text-secondary">Correo Electrónico <span class="text-danger">*</span></label>
+                                        <input type="email" th:field="*{email}" class="form-control" placeholder="usuario@email.com" required>
+                                        <div class="form-text small" th:if="${usuario.id == null}">Se enviará un correo de bienvenida a esta dirección.</div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold text-secondary">Foto de Perfil</label>
+                                        <input type="file" name="archivo" class="form-control" accept="image/png, image/jpeg">
+                                        <div class="form-text small">Suba una imagen cuadrada para mejores resultados (JPG o PNG).</div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Contraseña de Acceso</label>
+                                        <input type="password" th:field="*{password}" class="form-control" placeholder="******">
+                                        <div class="form-text small text-warning" th:unless="${usuario.id == null}">Deje en blanco si no desea cambiarla.</div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-secondary">Rol de Sistema <span class="text-danger">*</span></label>
+                                        <select th:field="*{rol}" class="form-select" required>
+                                            <option value="" disabled selected>-- Seleccione un rol --</option>
+                                            <option th:each="opcionRol : ${roles}" 
+                                                    th:value="${opcionRol.id}" 
+                                                    th:text="${opcionRol.nombre}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-12 mt-4">
+                                        <div class="form-check form-switch fs-5">
+                                            <input type="checkbox" th:field="*{activo}" class="form-check-input" id="estadoUsuario">
+                                            <label class="form-check-label ms-2" for="estadoUsuario">Cuenta <strong>Activa</strong> y con acceso al sistema</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4 text-muted">
+
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a th:href="@{/usuarios}" class="btn btn-outline-secondary">
+                                        <i class="fa-solid fa-xmark"></i> Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success px-4">
+                                        <i class="fa-solid fa-user-check"></i> Guardar Usuario
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

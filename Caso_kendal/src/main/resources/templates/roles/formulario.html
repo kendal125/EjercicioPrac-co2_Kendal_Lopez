@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: plantillaBase(${rol.id == null ? 'Registrar Nuevo Rol' : 'Modificar Rol'}, ~{::section})}">
+    <body>
+
+        <section>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6 col-lg-5">
+
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+                            <h5 class="mb-0">
+                                <i class="fa-solid fa-user-shield me-2"></i>
+                                <span th:text="${rol.id == null} ? 'Creación de Rol' : 'Edición de Rol'"></span>
+                            </h5>
+                        </div>
+
+                        <div class="card-body p-4">
+                            <form th:action="@{/roles/guardar}" th:object="${rol}" method="post">
+
+                                <input type="hidden" th:field="*{id}">
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold text-secondary">Identificador del Rol <span class="text-danger">*</span></label>
+                                    <input type="text" th:field="*{nombre}" class="form-control text-uppercase" placeholder="Ej. ADMIN, CLIENTE..." required autofocus>
+                                    <div class="form-text small text-muted">Utilice letras mayúsculas para mantener el estándar.</div>
+                                </div>
+
+                                <hr class="text-muted">
+
+                                <div class="d-flex justify-content-between">
+                                    <a th:href="@{/roles}" class="btn btn-outline-secondary">
+                                        <i class="fa-solid fa-arrow-left"></i> Regresar
+                                    </a>
+                                    <button type="submit" class="btn btn-success px-4 shadow-sm">
+                                        <i class="fa-solid fa-check"></i> Confirmar Guardado
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>
